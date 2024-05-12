@@ -1,3 +1,5 @@
+import Explore from './components/explore.js';
+
 const route = (event: MouseEvent) => {
   event = event || window.event;
   event?.preventDefault();
@@ -14,7 +16,8 @@ const routes: Route = {
   "/": "/pages/main.html",
   "/details": "/pages/details.html",
 };
-
+console.log(document.getElementById("explore"))
+console.log("hi")
 const handleLocation = async () => {
   const path = window.location.pathname;
   console.log(path);
@@ -24,8 +27,13 @@ const handleLocation = async () => {
   const html = await fetch(routeUrl).then((data) => data.text());
 
   const mainPageElement = document.getElementById("main-page");
+  console.log(mainPageElement)
   if (mainPageElement) {
     mainPageElement.innerHTML = html;
+  }
+  const explore = document.getElementById("explore");
+  if(explore){
+    explore.innerHTML = Explore();
   }
 };
 
