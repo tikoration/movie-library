@@ -7,13 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import DetailsOfMovie from "./details.js";
-const mainPageElement = document.getElementById("main-page");
 const route = (event) => {
     event = event || window.event;
     event === null || event === void 0 ? void 0 : event.preventDefault();
-    // console.log(event.target);
-    window.history.pushState({}, "dd", event.target.href);
+    window.history.pushState({}, "", event.target.href);
     handleLocation();
 };
 const routes = {
@@ -21,37 +18,16 @@ const routes = {
     "/": "/pages/main.html",
     "/details": "/pages/details.html",
 };
-const handleLocation = () => __awaiter(void 0, void 0, void 0, function* () {
+export const handleLocation = () => __awaiter(void 0, void 0, void 0, function* () {
     const path = window.location.pathname;
     console.log(path);
-    const routeUrl = routes[path] || routes[404];
+    const routePath = path || "/";
+    const routeUrl = routes[routePath] || routes[404];
     const html = yield fetch(routeUrl).then((data) => data.text());
+    const mainPageElement = document.getElementById("main-page");
     if (mainPageElement) {
         mainPageElement.innerHTML = html;
-    }
-    const homeContainer = document.querySelector(".home-container");
-    const detailsContainer = document.querySelector(".details-container");
-    if (homeContainer) {
-        const pop = document.querySelector(".populars");
-        const newDiv = document.createElement("div");
-        pop === null || pop === void 0 ? void 0 : pop.append;
-    }
-    if (detailsContainer) {
-        detailsContainer.innerHTML = DetailsOfMovie();
     }
 });
 window.onpopstate = handleLocation;
 window.route = route;
-handleLocation();
-// //////
-// In main.ts
-//653346
-// async function getmovie() {
-//   const fetched = await fetch(
-//     `https://api.themoviedb.org/3/movie/popular?api_key=88f63d75ae40120899216aa75faa6c13`
-//   );
-//   console.log(fetched);
-//   const data = await fetched.json();
-//   console.log(data);
-// }
-// getmovie();

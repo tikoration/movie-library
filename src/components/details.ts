@@ -1,5 +1,6 @@
-<div class="details-container">
-  <!-- <div class="trailer-description">
+export default function DetailsOfMovie() {
+  return `
+  <div class="trailer-description">
     <div class="trailer">
       <p class="movie-name">movie name</p>
       <video src="" class="movie-trailer"></video>
@@ -36,10 +37,7 @@
       <div>
         <p>description :</p>
         <span class="desc">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Id nostrum
-          voluptates aliquid in totam distinctio deserunt aperiam repellat ad?
-          Fugit eligendi esse cupiditate tempore, error itaque cumque est a
-          omnis.
+  
         </span>
       </div>
     </div>
@@ -47,13 +45,8 @@
   <div class="details-popular">
     <p>Popular Movies</p>
     <div class="details-popular-cont">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+   
     </div>
-  </div> -->
-</div>
+  </div>
+  `;
+}

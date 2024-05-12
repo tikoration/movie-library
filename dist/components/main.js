@@ -31,11 +31,6 @@ const handleLocation = () => __awaiter(void 0, void 0, void 0, function* () {
     }
     const homeContainer = document.querySelector(".home-container");
     const detailsContainer = document.querySelector(".details-container");
-    if (homeContainer) {
-        const pop = document.querySelector(".populars");
-        const newDiv = document.createElement("div");
-        pop === null || pop === void 0 ? void 0 : pop.append;
-    }
     if (detailsContainer) {
         detailsContainer.innerHTML = DetailsOfMovie();
     }
@@ -45,10 +40,9 @@ window.route = route;
 handleLocation();
 // //////
 // In main.ts
-//653346
 // async function getmovie() {
 //   const fetched = await fetch(
-//     `https://api.themoviedb.org/3/movie/popular?api_key=88f63d75ae40120899216aa75faa6c13`
+//     `https://api.themoviedb.org/3/movie/550?api_key=88f63d75ae40120899216aa75faa6c13`
 //   );
 //   console.log(fetched);
 //   const data = await fetched.json();

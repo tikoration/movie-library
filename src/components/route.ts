@@ -15,7 +15,7 @@ const routes: Route = {
   "/details": "/pages/details.html",
 };
 
-const handleLocation = async () => {
+export const handleLocation = async () => {
   const path = window.location.pathname;
   console.log(path);
   const routePath = path || "/";
@@ -31,5 +31,3 @@ const handleLocation = async () => {
 
 window.onpopstate = handleLocation;
 (window as any).route = route;
-
-handleLocation();
