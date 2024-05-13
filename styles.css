@@ -10,9 +10,12 @@ html {
 
 body {
   font-family: "Roboto", sans-serif;
+  /* font-family: ; */
   background: #192026;
+  color: #fff;
 }
 
+/* NAVIGATION */
 .nav {
   width: 100%;
   display: flex;
@@ -82,4 +85,103 @@ body {
   .search-box {
     /* width: 40%; */
   }
+}
+
+/* DETAILS PAGE */
+.home-container {
+  width: 85%;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+
+.details-container {
+  width: 85%;
+  margin: 0 auto;
+  background: red;
+  display: flex;
+  /* gap: 2rem; */
+  padding: 0.5rem;
+}
+.movie-name {
+  font-weight: 700;
+  letter-spacing: 0.02rem;
+}
+
+.trailer-description {
+  background-color: blue;
+  gap: 2rem;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+.trailer {
+  background-color: purple;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.8rem;
+  gap: 0.5rem;
+}
+
+video {
+  border: 2px solid black;
+  width: 90%;
+}
+
+.description img {
+  width: 200px;
+  height: 300px;
+  /* border-radius: 20px; */
+}
+.description > div:first-child {
+  display: flex;
+  gap: 1rem;
+}
+
+.description p {
+  font-size: 1.7rem;
+}
+.description span {
+  font-size: 1.2rem;
+  color: #868686;
+}
+.description {
+  padding-bottom: 2rem;
+}
+.description > div:first-child > div {
+  /* padding: 0.5rem; */
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.description > div:first-child > div > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.description > div:last-child {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.details-popular {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02rem;
+}
+
+.details-popular-cont {
+  padding-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.details-popular-cont div {
+  border: 1px solid black;
+  width: 130px;
+  height: 200px;
+  border-radius: 10px;
 }

@@ -1,4 +1,4 @@
-import Explore from './components/explore.js';
+import Explore from "./components/explore.js";
 import DetailsOfMovie from "./details.js";
 import { getMovieById, getPopularMovies } from "./services/apiMovies.js";
 const mainPageElement = document.getElementById("main-page") as HTMLElement;
@@ -6,7 +6,7 @@ const mainPageElement = document.getElementById("main-page") as HTMLElement;
 const route = (event: MouseEvent) => {
   event = event || window.event;
   event?.preventDefault();
-  window.history.pushState({}, "", (event.target as HTMLAnchorElement).href);
+  window.history.pushState({}, "dd", (event.target as HTMLAnchorElement).href);
   handleLocation();
 };
 
@@ -35,7 +35,7 @@ const handleLocation = async () => {
   const detailsContainer = document.querySelector(".details-container");
   const explore = document.getElementById("explore");
 
-  if(explore){
+  if (explore) {
     explore.innerHTML = Explore();
   }
   if (homeContainer) {
