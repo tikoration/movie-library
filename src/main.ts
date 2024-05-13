@@ -1,5 +1,9 @@
+// import Explore from "./components/explore.js";
+// import Explore from "./explore.js";
+// import Explore from "./explore.js";
 import Explore from "./components/explore.js";
-import DetailsOfMovie from "./details.js";
+// import Explore from "./explore.js";
+import DetailsOfMovie from "./components/details.js";
 import { getMovieById, getPopularMovies } from "./services/apiMovies.js";
 const mainPageElement = document.getElementById("main-page") as HTMLElement;
 
