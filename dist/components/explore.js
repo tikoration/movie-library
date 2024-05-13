@@ -1,6 +1,3 @@
-// Remove the import statement for Swiper
-// import Swiper from 'swiper';
-// import 'swiper/swiper-bundle.min.css';
 const Explore = () => {
     fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=88f63d75ae40120899216aa75faa6c13')
         .then(res => res.json())

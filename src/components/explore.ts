@@ -1,6 +1,3 @@
-// Remove the import statement for Swiper
-// import Swiper from 'swiper';
-// import 'swiper/swiper-bundle.min.css';
 
 interface Movie {
     id: number;

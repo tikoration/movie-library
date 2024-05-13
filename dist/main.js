@@ -8,6 +8,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import Explore from './components/explore.js';
+import DetailsOfMovie from "./details.js";
+import { getPopularMovies } from "./services/apiMovies.js";
+const mainPageElement = document.getElementById("main-page");
 const route = (event) => {
     event = event || window.event;
     event === null || event === void 0 ? void 0 : event.preventDefault();
@@ -19,22 +22,27 @@ const routes = {
     "/": "/pages/main.html",
     "/details": "/pages/details.html",
 };
-console.log(document.getElementById("explore"));
-console.log("hi");
 const handleLocation = () => __awaiter(void 0, void 0, void 0, function* () {
     const path = window.location.pathname;
-    console.log(path);
-    const routePath = path || "/";
-    const routeUrl = routes[routePath] || routes[404];
+    const routeUrl = routes[path] || routes[404];
     const html = yield fetch(routeUrl).then((data) => data.text());
-    const mainPageElement = document.getElementById("main-page");
-    console.log(mainPageElement);
     if (mainPageElement) {
         mainPageElement.innerHTML = html;
     }
+    const homeContainer = document.querySelector(".home-container");
+    const detailsContainer = document.querySelector(".details-container");
     const explore = document.getElementById("explore");
     if (explore) {
         explore.innerHTML = Explore();
+    }
+    if (homeContainer) {
+        const pop = document.querySelector(".populars");
+        const newDiv = document.createElement("div");
+        const data = yield getPopularMovies();
+        console.log(data);
+    }
+    if (detailsContainer) {
+        detailsContainer.innerHTML = DetailsOfMovie();
     }
 });
 window.onpopstate = handleLocation;
