@@ -185,3 +185,7 @@ video {
   height: 200px;
   border-radius: 10px;
 }
+
+.imdb {
+  width: 40px;
+}

@@ -1,58 +1,94 @@
-// import Explore from "./components/explore.js";
-// import Explore from "./explore.js";
-// import Explore from "./explore.js";
 import Explore from "./components/explore.js";
-// import Explore from "./explore.js";
+
 import DetailsOfMovie from "./components/details.js";
 import { getMovieById, getPopularMovies } from "./services/apiMovies.js";
+import { PopularMovies } from "./components/popularMovies.js";
 const mainPageElement = document.getElementById("main-page") as HTMLElement;
 
-const route = (event: MouseEvent) => {
-  event = event || window.event;
-  event?.preventDefault();
-  window.history.pushState({}, "dd", (event.target as HTMLAnchorElement).href);
-  handleLocation();
+// export const route = (event: MouseEvent) => {
+//   event = event || window.event;
+//   event?.preventDefault();
+//   window.history.pushState({}, "dd", (event.target as HTMLAnchorElement).href);
+//   handleLocation();
+// };
+
+function router() {
+  let view = routes[location.pathname];
+
+  if (view) {
+    document.title = view.title;
+    mainPageElement.innerHTML = view.render();
+  } else {
+    history.replaceState("", "", "/");
+    router();
+  }
+}
+type Route = {
+  [key: string]: { title: string; render: () => string }; // Allow any string key
 };
 
-type Route = {
-  [key: string]: string; // Allow any string key
-};
+// const routes: Route = {
+//   404: "/pages/404.html",
+//   "/": "/pages/main.html",
+//   "/details": "/pages/details.html",
+// };
 
 const routes: Route = {
-  404: "/pages/404.html",
-  "/": "/pages/main.html",
-  "/details": "/pages/details.html",
+  // 404: "/pages/404.html",
+  "/": { title: "home", render: Home },
+  "/details": { title: "details", render: details },
 };
 
-const handleLocation = async () => {
-  const path = window.location.pathname;
+// const handleLocation = async () => {
+//   const path = window.location.pathname;
 
-  const routeUrl = routes[path] || routes[404];
+//   const routeUrl = routes[path] || routes[404];
 
-  const html = await fetch(routeUrl).then((data) => data.text());
+//   const html = await fetch(routeUrl).then((data) => data.text());
 
-  if (mainPageElement) {
-    mainPageElement.innerHTML = html;
+//   if (mainPageElement) {
+//     mainPageElement.innerHTML = html;
+//   }
+
+//   const homeContainer = document.querySelector(".home-container");
+//   const detailsContainer = document.querySelector(".details-container");
+//   const explore = document.getElementById("explore");
+//   console.log(explore);
+//   const popularsContainer = document.getElementById("populars-container");
+
+//   if (explore) {
+//     explore.innerHTML = Explore();
+//   }
+
+//   if (popularsContainer) {
+//     //   // const { results } = await getPopularMovies();
+//     //   // console.log(results);
+//     popularsContainer.innerHTML = await PopularMovies();
+//   }
+//   if (homeContainer) {
+//     const pop = document.querySelector(".populars");
+//     const newDiv = document.createElement("div");
+//     // const data = await getPopularMovies();
+//     // console.log(data);
+//     // popularsContainer.innerHTML = popularMovies();
+//   }
+//   if (detailsContainer) {
+//     detailsContainer.innerHTML = DetailsOfMovie();
+//   }
+// };
+// Handle navigation
+window.addEventListener("click", e => {
+  if (e.target.matches("[data-link]")) {
+      e.preventDefault();
+      history.pushState("", "", e.target.href);
+      router();
   }
+});
 
-  const homeContainer = document.querySelector(".home-container");
-  const detailsContainer = document.querySelector(".details-container");
-  const explore = document.getElementById("explore");
+// Update router
+window.addEventListener("popstate", router);
+window.addEventListener("DOMContentLoaded", router);
 
-  if (explore) {
-    explore.innerHTML = Explore();
-  }
-  if (homeContainer) {
-    const pop = document.querySelector(".populars");
-    const newDiv = document.createElement("div");
-    const data = await getPopularMovies();
-    console.log(data);
-  }
-  if (detailsContainer) {
-    detailsContainer.innerHTML = DetailsOfMovie();
-  }
-};
-
-window.onpopstate = handleLocation;
-(window as any).route = route;
-handleLocation();
+// window.onpopstate = handleLocation;
+// (window as any).route = route;
+// handleLocation();

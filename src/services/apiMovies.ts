@@ -7,7 +7,8 @@ export async function getPopularMovies() {
     );
     if (!fetchedMovies.ok) throw new Error("error with accesing data");
     const data = await fetchedMovies.json();
-    console.log(data);
+    // console.log(data);
+    return data;
   } catch (err) {
     console.error(err);
   }

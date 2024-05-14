@@ -1,16 +1,16 @@
 const Explore = () => {
-    fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=88f63d75ae40120899216aa75faa6c13')
-        .then(res => res.json())
+    fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=88f63d75ae40120899216aa75faa6c13")
+        .then((res) => res.json())
         .then((data) => {
-        const movies = data.results.map(movie => ({
+        const movies = data.results.map((movie) => ({
             id: movie.id,
             title: movie.title,
             img: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
             poster_img: `https://image.tmdb.org/t/p/original${movie.poster_path}`,
-            description: movie.overview
+            description: movie.overview,
         }));
         // Initialize Swiper
-        const swiperContainer = new Swiper('.swiper-container', {
+        const swiperContainer = new Swiper(".swiper-container", {
             loop: true, // Enable loop mode
             autoplay: {
                 delay: 7000, // Delay between slides in milliseconds
@@ -20,9 +20,9 @@ const Explore = () => {
             spaceBetween: 30,
         });
         // Add slides to Swiper
-        movies.forEach(movie => {
-            const slide = document.createElement('div');
-            slide.classList.add('swiper-slide');
+        movies.forEach((movie) => {
+            const slide = document.createElement("div");
+            slide.classList.add("swiper-slide");
             slide.innerHTML = `
                     <div key="${movie.id}">
                         <div>
