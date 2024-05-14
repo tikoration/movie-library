@@ -1,5 +1,5 @@
 const route = (event: MouseEvent) => {
-  event = event || window.event;
+  event = event || (window.event as MouseEvent);
   event?.preventDefault();
   window.history.pushState({}, "", (event.target as HTMLAnchorElement).href);
   handleLocation();

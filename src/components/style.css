@@ -1,0 +1,15 @@
+#explore {
+  width: 85%;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+
+.something {
+  color: red;
+}
+
+.swiperContainer {
+  width: 1170px;
+  overflow: hidden;
+  font-family: poppins;
+}
