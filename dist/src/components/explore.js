@@ -5,12 +5,10 @@ const Explore = () => {
         const movies = data.results.map((movie) => ({
             id: movie.id,
             title: movie.title,
-            img: movie.backdrop_path &&
-                `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
+            img: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
             poster_img: `https://image.tmdb.org/t/p/original${movie.poster_path}`,
             description: movie.overview,
         }));
-        console.log(movies);
         // Initialize Swiper
         const swiperContainer = new Swiper(".swiper-container", {
             loop: true, // Enable loop mode
@@ -26,25 +24,34 @@ const Explore = () => {
             const slide = document.createElement("div");
             slide.classList.add("swiper-slide");
             slide.innerHTML = `
-                  <a href="/details" data-link class="explore-container" key="${movie.id}">
-                          <div class="movie-t-d">
-                              <h1 class="movie-title">${movie.title}</h1>
-                              <h4>${movie.description}</h4>
-                          </div>
-                          <img class="movie-image" src="${movie.img || movie.poster_img}" alt="${movie.title}" />
-                  </a>
-              `;
+                    <div key="${movie.id}">
+                        <div>
+                            <h1>${movie.title}</h1>
+                            <h4>${movie.description}</h4>
+                        </div>
+                        <img class="movie-image" src="${movie.img}" alt="${movie.title}" />
+                    </div>
+                `;
             swiperContainer.appendSlide(slide);
         });
     });
     return `
-  <div class="explore-t-q">
-      <h1 class="explore-title">Explore</h1>
-      <h3 class="explore-question">What are you gonna watch today ?</h3>
-  </div>
-      <div class="swiper-container">
-          <div class="swiper-wrapper"></div>
-      </div>
-  `;
+        <div class="swiper-container">
+            <div class="swiper-wrapper"></div>
+        </div>
+        <style>
+            .movie-image {
+                width: 1170px;
+                height: 400px;
+                object-fit: cover; /* Ensure the image covers the entire area */
+            }
+
+            .swiper-container {
+                width: 1170px;
+                overflow: hidden;
+                font-family: poppins;
+            }
+        </style>
+    `;
 };
 export default Explore;

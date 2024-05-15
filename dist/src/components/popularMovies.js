@@ -8,16 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { getPopularMovies } from "../services/apiMovies.js";
-const PopularMovies = () => __awaiter(void 0, void 0, void 0, function* () {
+// import { route } from "../main.js";
+const popularsContainer = document.getElementById("populars-container");
+export const PopularMovies = () => __awaiter(void 0, void 0, void 0, function* () {
     const { results } = yield getPopularMovies();
-    console.log(results, "dd");
+    console.log(results);
     return `
-  <div>
   <h2>Popular Movies</h2>
   <div class="container-for-pop">
 ${results.map((el) => {
         return `<div>
-  <a href="/details" data-link >
+  <a href="/details" >
   <img src="https://image.tmdb.org/t/p/w500/${el.backdrop_path}" alt="">
   </a>
   <div>
@@ -32,5 +33,4 @@ ${results.map((el) => {
 </div>
   `;
 });
-export default PopularMovies;
 // padding 50px

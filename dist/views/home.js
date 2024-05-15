@@ -7,30 +7,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { getPopularMovies } from "../services/apiMovies.js";
-const PopularMovies = () => __awaiter(void 0, void 0, void 0, function* () {
-    const { results } = yield getPopularMovies();
-    console.log(results, "dd");
-    return `
-  <div>
-  <h2>Popular Movies</h2>
-  <div class="container-for-pop">
-${results.map((el) => {
-        return `<div>
-  <a href="/details" data-link >
-  <img src="https://image.tmdb.org/t/p/w500/${el.backdrop_path}" alt="">
-  </a>
-  <div>
-  <div>
-  <img class="imdb" src="imdb-logo.png"> <span>${el.vote_average}</span>
-  </div>
-  <p>${el.original_title}</p>
-  </div>
-  </div>`;
-    })}
+import Explore from "../components/explore.js";
+import PopularMovies from "../components/popularMovies.js";
+export default function HomeContainer() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const exploreData = Explore();
+        const popData = yield PopularMovies();
+        console.log(Explore());
+        return `
+    ${exploreData}
+    ${popData}
 
-</div>
-  `;
-});
-export default PopularMovies;
-// padding 50px
+    `;
+    });
+}

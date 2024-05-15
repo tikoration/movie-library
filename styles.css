@@ -15,6 +15,10 @@ body {
   color: #fff;
 }
 
+#main-page {
+  width: 100%;
+  padding: 10px 100px;
+}
 /* NAVIGATION */
 .nav {
   width: 100%;

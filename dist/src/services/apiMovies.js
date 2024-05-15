@@ -11,11 +11,11 @@ const API_KEY = "88f63d75ae40120899216aa75faa6c13";
 export function getPopularMovies() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const fetchedMovies = yield fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
+            const fetchedMovies = yield fetch(`https://api.themoviedb.org/3/movie/popular?api_key=88f63d75ae40120899216aa75faa6c13`);
             if (!fetchedMovies.ok)
                 throw new Error("error with accesing data");
             const data = yield fetchedMovies.json();
-            console.log(data);
+            // console.log(data);
             return data;
         }
         catch (err) {
