@@ -21,7 +21,7 @@ ${results.map((el: Movie) => {
   </a>
   <div>
   <div>
-  <img class="imdb" src="imdb-logo.png"> <span>${el.vote_average}</span>
+  <img class="imdb" src="assets/imdb-logo.png"> <span>${el.vote_average}</span>
   </div>
   <p>${el.original_title}</p>
   </div>
