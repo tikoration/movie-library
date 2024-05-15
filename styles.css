@@ -86,9 +86,9 @@ body {
   .list {
     gap: 1rem;
   }
-  .search-box {
-    /* width: 40%; */
-  }
+  /* .search-box {
+    width: 40%;
+  } */
 }
 
 /* DETAILS PAGE */
