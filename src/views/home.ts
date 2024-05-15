@@ -4,7 +4,7 @@ import PopularMovies from "../components/popularMovies.js";
 export default async function HomeContainer() {
   const exploreData = Explore();
   const popData = await PopularMovies();
-  console.log(Explore());
+  Explore();
   return `
     ${exploreData}
     ${popData}

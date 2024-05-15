@@ -15,7 +15,7 @@ export function getPopularMovies() {
             if (!fetchedMovies.ok)
                 throw new Error("error with accesing data");
             const data = yield fetchedMovies.json();
-            console.log(data);
+            // console.log(data);
             return data;
         }
         catch (err) {
@@ -30,7 +30,7 @@ export function getMovieById(id) {
             if (!fetchedMovie.ok)
                 throw new Error(`there is no movie with id:${id}`);
             const data = yield fetchedMovie.json();
-            console.log(data);
+            // console.log(data);
         }
         catch (err) {
             console.error(err);

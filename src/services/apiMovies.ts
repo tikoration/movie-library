@@ -7,7 +7,7 @@ export async function getPopularMovies() {
     );
     if (!fetchedMovies.ok) throw new Error("error with accesing data");
     const data = await fetchedMovies.json();
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (err) {
     console.error(err);
@@ -21,7 +21,7 @@ export async function getMovieById(id: number) {
     );
     if (!fetchedMovie.ok) throw new Error(`there is no movie with id:${id}`);
     const data = await fetchedMovie.json();
-    console.log(data);
+    // console.log(data);
   } catch (err) {
     console.error(err);
   }

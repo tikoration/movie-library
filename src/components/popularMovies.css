@@ -1,0 +1,78 @@
+.popular-movies-cont {
+  /* display: flex; */
+  /* margin: ; */
+}
+
+.title-popular-movies {
+  padding: 1.5rem;
+  font-size: 2rem;
+}
+
+.container-for-pop {
+  flex-wrap: wrap;
+  display: flex;
+  gap: 2rem;
+  row-gap: 3rem;
+  justify-content: center;
+}
+
+.movie-img {
+  /* position: relative; */
+  width: 200px;
+  height: 300px;
+  border-radius: 10px;
+}
+.movie-img-cont {
+  width: 200px;
+  height: 300px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  /* background-image: linear-gradient(269.96deg, #1d1d1d 0%, #0f1e29 100%); */
+}
+/*  0% #1d1d1d   100% #0F1E29  */
+
+.movie-img-cont::after {
+  content: "";
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    180deg,
+    rgba(29, 29, 29, 0.01) 0%,
+    rgba(15, 30, 41, 0.8) 100%
+  );
+  z-index: 9;
+}
+.movie-imdb-title {
+  position: absolute;
+  bottom: 18px;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+.movie-imdb-title > p,
+.vote-average > span {
+  font-size: 1.6rem;
+  color: #fff;
+  text-align: center;
+}
+
+.vote-average {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  align-items: center;
+  /*
+  position: absolute;
+  bottom: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+}

@@ -21,7 +21,7 @@ const Explore = () => {
         poster_img: `https://image.tmdb.org/t/p/original${movie.poster_path}`,
         description: movie.overview,
       }));
-      console.log(movies);
+      // console.log(movies);
       // Initialize Swiper
       const swiperContainer = new Swiper(".swiper-container", {
         loop: true, // Enable loop mode
@@ -36,10 +36,11 @@ const Explore = () => {
       movies.forEach((movie) => {
         const slide = document.createElement("div");
         slide.classList.add("swiper-slide");
+
         slide.innerHTML = `
-                  <a href="/details" data-link class="explore-container" key="${
+                  <a href="/details/${
                     movie.id
-                  }">
+                  }" data-link class="explore-container" id="${movie.id}">
                           <div class="movie-t-d">
                               <h1 class="movie-title">${movie.title}</h1>
                               <h4>${movie.description}</h4>
