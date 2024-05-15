@@ -1,3 +1,4 @@
+"use strict";
 // import Explore from "./components/explore.js";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -86,44 +87,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 // // window.onpopstate = handleLocation;
 // // (window as any).route = route;
 // // handleLocation();
-import DetailsOfMovie from "./views/details.js";
-import HomeContainer from "./views/home.js";
-const navigateTo = (url) => {
-    // history.pushState(null, null, url) ase kna tviton
-    history.pushState(null, "", url);
-    router();
-};
 const router = () => __awaiter(void 0, void 0, void 0, function* () {
     const routes = [
-        { path: "/", view: HomeContainer },
-        { path: "/details", view: DetailsOfMovie },
+        { path: '/', view: () => console.log('vsdd') },
+        { path: '/details', view: () => console.log('vsdd') },
     ];
-    const potentialMatches = routes.map((route) => {
+    const potentialMatches = routes.map(route => {
         return {
             route: route,
-            isMatch: location.pathname === route.path,
+            isMatch: location.pathname === route.path
         };
     });
-    let match = potentialMatches.find((potentialMatch) => potentialMatch.isMatch);
-    // defaulting to root index[0]
-    if (!match) {
-        match = {
-            route: routes[0],
-            isMatch: true,
-        };
-    }
-    const view = match.route.view();
-    const mainPage = document.querySelector("#main-page");
-    mainPage.innerHTML = yield view;
-    // console.log(match.route.view());
-});
-window.addEventListener("popstate", router);
-document.addEventListener("DOMContentLoaded", () => {
-    document.body.addEventListener("click", (e) => {
-        if (e.target.matches("[data-link]")) {
-            e.preventDefault();
-            navigateTo(e.target.href);
-        }
-    });
-    router();
 });

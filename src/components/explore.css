@@ -1,0 +1,69 @@
+#explore {
+  /* display: flex;
+    justify-content: center; */
+  width: 100%;
+  padding: 10px 100px;
+}
+.swiper-container {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.explore-t-q {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.explore-title {
+  font-size: 32px;
+  font-weight: 600;
+}
+.explore-question {
+  font-size: 22px;
+  font-weight: 400;
+  color: #868686;
+}
+.explore-container {
+  /* overflow: hidden; */
+  width: 100%;
+  color: white;
+}
+.explore-container a {
+  position: relative;
+  color: white;
+}
+.movie-image {
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+}
+.explore-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    269.96deg,
+    rgba(29, 29, 29, 0) 0.04%,
+    rgba(29, 29, 29, 0.8) 99.5%
+  );
+  z-index: 1;
+}
+.movie-t-d {
+  position: absolute;
+  left: 47px;
+  bottom: 50px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 2;
+}
+.movie-title {
+  font-size: 36px;
+  font-weight: 600;
+}

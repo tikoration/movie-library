@@ -1,5 +1,6 @@
 export default function DetailsOfMovie() {
   return `
+  <div  class="details-container">
   <div class="trailer-description">
     <div class="trailer">
       <p class="movie-name">movie name</p>
@@ -47,6 +48,7 @@ export default function DetailsOfMovie() {
     <div class="details-popular-cont">
    
     </div>
+  </div>
   </div>
   `;
 }

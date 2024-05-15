@@ -15,6 +15,10 @@ body {
   color: #fff;
 }
 
+#main-page {
+  width: 100%;
+  padding: 10px 100px;
+}
 /* NAVIGATION */
 .nav {
   width: 100%;
@@ -82,9 +86,9 @@ body {
   .list {
     gap: 1rem;
   }
-  .search-box {
-    /* width: 40%; */
-  }
+  /* .search-box {
+    width: 40%;
+  } */
 }
 
 /* DETAILS PAGE */
@@ -184,4 +188,8 @@ video {
   width: 130px;
   height: 200px;
   border-radius: 10px;
+}
+
+.imdb {
+  width: 40px;
 }
