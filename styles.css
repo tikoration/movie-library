@@ -68,12 +68,15 @@ body {
   border-radius: 20px;
   background: none;
   background: #374151;
-}
-
-.search-bar::placeholder {
   color: #868686;
   padding-left: 2rem;
+ 
 }
+
+/* .search-bar::placeholder {
+  color: #868686;
+  padding-left: 2rem;
+} */
 
 @media (max-width: 50em) {
   .logo-and-list {

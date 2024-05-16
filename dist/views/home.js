@@ -13,11 +13,10 @@ export default function HomeContainer() {
     return __awaiter(this, void 0, void 0, function* () {
         const exploreData = Explore();
         const popData = yield PopularMovies();
-        console.log(Explore());
+        Explore();
         return `
     ${exploreData}
     ${popData}
-
     `;
     });
 }
