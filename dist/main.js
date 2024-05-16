@@ -9,47 +9,52 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import DetailsOfMovie from "./views/details.js";
 import HomeContainer from "./views/home.js";
+import SearchPage from "./views/searchPage.js";
 const navigateTo = (url) => {
     // console.log(url);
     // history.pushState(null, null, url) ase kna tviton
-    const numbers = url.match(/\d+$/);
-    const extractedNumber = numbers ? numbers[0] : null;
-    console.log(extractedNumber); // Output: "823464"  history.pushState(null, "", url);
-    router(extractedNumber);
+    history.pushState(null, "", url);
+    router();
 };
-const router = (...args_1) => __awaiter(void 0, [...args_1], void 0, function* (id = "/") {
+const router = () => __awaiter(void 0, void 0, void 0, function* () {
     const routes = [
         { path: "/", view: HomeContainer },
         { path: "/library", view: DetailsOfMovie },
-        { path: `/details/${id}`, view: DetailsOfMovie },
+        { path: `/details/:id`, view: DetailsOfMovie },
+        { path: `/search/:key`, view: SearchPage },
     ];
-    const potentialMatches = routes.map((route) => {
-        return {
-            route: route,
-            isMatch: location.pathname === route.path,
-        };
+    const match = routes.find((route) => {
+        const routePathSegments = route.path
+            .split("/")
+            .filter((segment) => segment !== "");
+        const urlPathSemgents = location.pathname
+            .split("/")
+            .filter((segment) => segment !== "");
+        if (routePathSegments.length != urlPathSemgents.length) {
+            return false;
+        }
+        const match = routePathSegments.every((routeSegment, i) => {
+            return (routeSegment === urlPathSemgents[i] || routeSegment.startsWith(":"));
+        });
+        return match;
     });
-    // console.log(potentialMatches, "potential,mat");
-    // console.log(location.pathname);
-    let match = potentialMatches.find((potentialMatch) => potentialMatch.isMatch);
-    console.log(match, "match");
-    // defaulting to root index[0]
-    // if (!match) {
-    //   match = {
-    //     route: routes[0],
-    //     isMatch: true,
-    //   };
-    // }
-    const view = match.route.view();
-    // console.log(view, "view");
+    // console.log(match, "sfewefw");
+    //   if (!match) {
+    //     match = {
+    //       route: routes[0],
+    //       isMatch: true,
+    //     };
+    //   }
+    // const view = await match.route.view();
+    const view = yield match.view();
     const mainPage = document.querySelector("#main-page");
-    mainPage.innerHTML = yield view;
+    mainPage.innerHTML = view;
     // console.log(match.route.view());
 });
 window.addEventListener("popstate", router);
 document.addEventListener("DOMContentLoaded", (e) => {
     document.body.addEventListener("click", (e) => {
-        console.log(e.target.id, "afafaf");
+        // console.log(e.target.id, "afafaf");
         if (e.target.matches("[data-link]")) {
             e.preventDefault();
             navigateTo(e.target.href);
@@ -57,4 +62,17 @@ document.addEventListener("DOMContentLoaded", (e) => {
         }
     });
     router();
+});
+// window.addEventListener("click", (e) => {
+//   // e.preventDefault();
+//   console.log(e.target);
+// });
+const input = document.getElementById("search-bar");
+console.log(input.value);
+document.addEventListener("keypress", (e) => {
+    // if (e.key === "Enter") {
+    //   e.preventDefault();
+    //   console.log(input.value);
+    // }
+    console.log(input.value);
 });

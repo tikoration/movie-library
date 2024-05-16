@@ -101,7 +101,7 @@ body {
 .details-container {
   width: 85%;
   margin: 0 auto;
-  background: red;
+  /* background: red; */
   display: flex;
   /* gap: 2rem; */
   padding: 0.5rem;
@@ -112,23 +112,37 @@ body {
 }
 
 .trailer-description {
-  background-color: blue;
+  /* background-color: blue; */
   gap: 2rem;
   width: 60%;
   display: flex;
   flex-direction: column;
 }
 .trailer {
-  background-color: purple;
+  /* background-color: purple; */
   display: flex;
   flex-direction: column;
   font-size: 1.8rem;
   gap: 0.5rem;
 }
 
-video {
-  border: 2px solid black;
-  width: 90%;
+/* video, */
+iframe {
+  /* border: 2px solid black; */
+  width: 95%;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.trailer-not-available {
+  width: 95%;
+  height: 300px;
+  border-radius: 10px;
+  background-color: black;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .description img {
@@ -162,6 +176,7 @@ video {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  font-size: 1.8rem;
 }
 .description > div:last-child {
   padding-top: 2rem;
@@ -192,4 +207,27 @@ video {
 
 .imdb {
   width: 40px;
+}
+
+.popular-cont-for-details > div {
+  width: 400px;
+}
+
+.popular-cont-for-details > div > div div,
+.popular-cont-for-details > div > div .movie-img {
+  width: 150px;
+  height: 250px;
+}
+
+.popular-cont-for-details .movie-imdb-title {
+  height: 50px;
+  font-size: 2rem;
+}
+
+.popular-cont-for-details .movie-imdb-title p {
+  font-size: 1.4rem;
+}
+
+.details-movie-img {
+  border-radius: 10px;
 }

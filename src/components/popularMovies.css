@@ -70,9 +70,13 @@
   justify-content: center;
   gap: 0.5rem;
   align-items: center;
+  visibility: hidden;
   /*
   position: absolute;
   bottom: 70%;
   left: 50%;
   transform: translate(-50%, -50%); */
+}
+.movie-img-cont:hover .vote-average {
+  visibility: visible;
 }
