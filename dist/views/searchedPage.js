@@ -1,9 +1,9 @@
 export default function Searched() {
     return `
     <div class="search-container">
-        <h2>Search Results:</h2>
-        <div  class="search-results" id="searchResults">
-            This is search component
+        <h1 class="search-title">Search Results:</h1>
+        <div class="search-results" id="searchResults">
+        <h1 id="no-movies" class="no-movies"></h1>
         </div>
     </div>
     `;
