@@ -1,18 +1,21 @@
 import { Search } from "./components/search.js";
 import DetailsOfMovie from "./views/details.js";
 import HomeContainer from "./views/home.js";
-import Searched from "./views/searched.js";
+import Searched from "./views/searchedPage.js";
 const navigateTo = (url: string) => {
   // console.log(url);
   // history.pushState(null, null, url) ase kna tviton
   history.pushState(null, "", url);
   router();
 };
+
+Search()
+
 const router = async () => {
   const routes = [
     { path: "/", view: HomeContainer },
     { path: "/library", view: DetailsOfMovie },
-    { path: "/search", view: Searched},
+    { path: "/search/:key", view: Searched},
     { path: `/details/:id`, view: DetailsOfMovie },
   ];
   const match = routes.find((route) => {
@@ -55,12 +58,16 @@ document.addEventListener("DOMContentLoaded", (e) => {
       // console.log((e.target as HTMLAnchorElement).href);
     }
   });
+  
+  document.body.addEventListener("keypress", (e) => {
+    const searchTerm = (document.getElementById('searchInput') as HTMLInputElement)
+    if (e.key === 'Enter') {
+      if(document.activeElement instanceof HTMLInputElement){
+        e.preventDefault();
+        navigateTo(`/search/${searchTerm.value}`);
+      }
+    }
+  });
   router();
 });
-
-Search();
-
-
-
-
 

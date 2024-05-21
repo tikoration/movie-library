@@ -1,0 +1,13 @@
+.search-results{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.search-results-item {
+    width: 120px;
+}
+
+.movie-img {
+    width: 100%;
+}

@@ -32,7 +32,7 @@ const Explore = () => {
         spaceBetween: 30,
       });
 
-      movies.forEach((movie) => {
+      movies && movies.forEach((movie) => {
         const slide = document.createElement("div");
         slide.classList.add("swiper-slide");
         slide.innerHTML = `

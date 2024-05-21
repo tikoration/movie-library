@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const api_key = '88f63d75ae40120899216aa75faa6c13';
+const searchKey = location.pathname.split('/')[2];
 export const Search = () => {
     function fetchData(searchTerm) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -18,7 +19,6 @@ export const Search = () => {
                     throw new Error('Failed to fetch data');
                 }
                 const data = yield response.json();
-                console.log(data, 'search');
                 return data;
             }
             catch (error) {
@@ -33,23 +33,33 @@ export const Search = () => {
             return;
         searchResultsElement.innerHTML = '';
         results.forEach(result => {
-            const listItem = document.createElement('li');
-            listItem.textContent = result.title;
+            console.log(result);
+            const listItem = document.createElement('div');
+            listItem.classList.add('search-results-item');
+            const movieTitle = document.createElement('h2');
+            movieTitle.classList.add('movie-title');
+            const movieImg = document.createElement('img');
+            movieImg.classList.add('movie-img');
+            movieImg.src = `https://image.tmdb.org/t/p/original${result.poster_path}`;
+            movieTitle.innerHTML = result.title;
+            listItem.append(movieTitle, movieImg);
             searchResultsElement.appendChild(listItem);
         });
     }
     document.getElementById('searchInput').addEventListener('keypress', (event) => __awaiter(void 0, void 0, void 0, function* () {
         if (event.key === 'Enter') {
             const searchTerm = document.getElementById('searchInput').value;
+            // const searchVal = searchTerm == "" ? searchKey : 
+            // searchTerm
             if (!searchTerm.trim()) {
                 document.getElementById('searchInput').innerHTML = '';
                 return;
             }
-            const { results } = yield fetchData(searchTerm);
+            const { results } = yield fetchData(searchKey);
             renderResults(results);
             const location = "/" + window.location.pathname.split("/")[1];
             if (location !== `/search`) {
-                window.location.href = `/search/${encodeURIComponent(searchTerm)}`;
+                window.location.href = `/search/:${searchTerm}`;
             }
             document.getElementById('searchInput').value = '';
         }
