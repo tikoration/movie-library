@@ -2,7 +2,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
+    gap: 25px;
+    width: 100%;
+    margin-bottom: 100px;
 }
 
 .search-title{
@@ -17,7 +19,7 @@
     padding: 10px;
     text-align: center;
     transition: padding 0.2s ease-out;
-  
+    margin-top: 20px;
 }
 
 .search-results-item:hover {
@@ -26,6 +28,9 @@
 
 .search-results-item h2{
     font-size: 20px;
+    height: 40px;
+    margin-bottom: 4px;
+    word-wrap: break-word;
 }
 
 .movie-img {
