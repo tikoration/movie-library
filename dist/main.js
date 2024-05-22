@@ -12,8 +12,6 @@ import DetailsOfMovie from "./views/details.js";
 import HomeContainer from "./views/home.js";
 import Searched from "./views/searchedPage.js";
 const navigateTo = (url) => {
-    // console.log(url);
-    // history.pushState(null, null, url) ase kna tviton
     history.pushState(null, "", url);
     router();
 };
@@ -23,7 +21,7 @@ const router = () => __awaiter(void 0, void 0, void 0, function* () {
         { path: "/", view: HomeContainer },
         { path: "/library", view: DetailsOfMovie },
         { path: "/search/:key", view: Searched },
-        { path: `/details/:id`, view: DetailsOfMovie },
+        { path: `/movie/:id`, view: DetailsOfMovie },
     ];
     const match = routes.find((route) => {
         const routePathSegments = route.path
@@ -40,27 +38,16 @@ const router = () => __awaiter(void 0, void 0, void 0, function* () {
         });
         return match;
     });
-    // console.log(match, "sfewefw");
-    //   if (!match) {
-    //     match = {
-    //       route: routes[0],
-    //       isMatch: true,
-    //     };
-    //   }
-    // const view = await match.route.view();
     const view = yield match.view();
     const mainPage = document.querySelector("#main-page");
     mainPage.innerHTML = view;
-    // console.log(match.route.view());
 });
 window.addEventListener("popstate", router);
-document.addEventListener("DOMContentLoaded", (e) => {
+document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("click", (e) => {
-        // console.log(e.target.id, "afafaf");
         if (e.target.matches("[data-link]")) {
             e.preventDefault();
             navigateTo(e.target.href);
-            // console.log((e.target as HTMLAnchorElement).href);
         }
     });
     document.body.addEventListener("keypress", (e) => {

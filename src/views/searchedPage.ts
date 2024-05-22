@@ -1,4 +1,3 @@
-import { Search } from "../components/search.js"
 export default function Searched (){
 
     return `

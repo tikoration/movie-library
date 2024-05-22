@@ -5,7 +5,9 @@ interface Movie {
   poster_path: string;
   overview: string;
 }
+
 declare const Swiper: any;
+
 const Explore = () => {
   fetch(
     "https://api.themoviedb.org/3/movie/now_playing?api_key=88f63d75ae40120899216aa75faa6c13"
@@ -25,7 +27,7 @@ const Explore = () => {
       const swiperContainer = new Swiper(".swiper-container", {
         loop: true, 
         autoplay: {
-          delay: 7000, 
+          delay: 7000,
         },
         slidesPerView: 1,
         centeredSlides: true,
