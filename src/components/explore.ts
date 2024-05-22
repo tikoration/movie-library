@@ -5,7 +5,9 @@ interface Movie {
   poster_path: string;
   overview: string;
 }
+
 declare const Swiper: any;
+
 const Explore = () => {
   fetch(
     "https://api.themoviedb.org/3/movie/now_playing?api_key=88f63d75ae40120899216aa75faa6c13"
@@ -21,22 +23,20 @@ const Explore = () => {
         poster_img: `https://image.tmdb.org/t/p/original${movie.poster_path}`,
         description: movie.overview,
       }));
-      // console.log(movies);
-      // Initialize Swiper
+
       const swiperContainer = new Swiper(".swiper-container", {
-        loop: true, // Enable loop mode
+        loop: true,
         autoplay: {
-          delay: 7000, // Delay between slides in milliseconds
+          delay: 7000,
         },
         slidesPerView: 1,
         centeredSlides: true,
         spaceBetween: 30,
       });
-      // Add slides to Swiper
+
       movies.forEach((movie) => {
         const slide = document.createElement("div");
         slide.classList.add("swiper-slide");
-
         slide.innerHTML = `
                   <a href="/details/${
                     movie.id

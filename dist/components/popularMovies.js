@@ -12,7 +12,7 @@ const PopularMovies = () => __awaiter(void 0, void 0, void 0, function* () {
     const { results } = yield getPopularMovies();
     // console.log(results, "dd");
     console.log(results, "results", location.pathname);
-    const pathIsDetails = location.pathname.includes("details");
+    const pathIsDetails = location.pathname.includes("movie");
     const sliced = results.slice(0, 6);
     console.log(sliced);
     return `
@@ -22,7 +22,7 @@ const PopularMovies = () => __awaiter(void 0, void 0, void 0, function* () {
 ${(pathIsDetails ? sliced : results)
         .map((el) => {
         return `
-  <a href="/details/${el.id}" data-link  class='movie-link'>
+  <a href="/movie/${el.id}" data-link  class='movie-link'>
 
   <div class=" movie-img-cont" id=${el.id}>
   <img  class="movie-img" src="https://image.tmdb.org/t/p/w500/${el.poster_path}" alt="">

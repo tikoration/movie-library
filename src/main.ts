@@ -1,20 +1,21 @@
+import { Search } from "./components/search.js";
 import DetailsOfMovie from "./views/details.js";
 import HomeContainer from "./views/home.js";
-import SearchPage from "./views/searchPage.js";
-const navigateTo = (url: string) => {
-  // console.log(url);
-  // history.pushState(null, null, url) ase kna tviton
+import Searched from "./views/searchedPage.js";
 
+const navigateTo = (url: string) => {
   history.pushState(null, "", url);
   router();
 };
+
+Search();
 
 const router = async () => {
   const routes = [
     { path: "/", view: HomeContainer },
     { path: "/library", view: DetailsOfMovie },
-    { path: `/details/:id`, view: DetailsOfMovie },
-    { path: `/search/:key`, view: SearchPage },
+    { path: "/search/:key", view: Searched },
+    { path: `/movie/:id`, view: DetailsOfMovie },
   ];
 
   const match = routes.find((route) => {
@@ -36,48 +37,33 @@ const router = async () => {
 
     return match;
   });
-  // console.log(match, "sfewefw");
 
-  //   if (!match) {
-  //     match = {
-  //       route: routes[0],
-  //       isMatch: true,
-  //     };
-  //   }
-
-  // const view = await match.route.view();
   const view = await match.view();
 
   const mainPage = document.querySelector("#main-page") as HTMLDivElement;
   mainPage.innerHTML = view;
-  // console.log(match.route.view());
 };
 
 window.addEventListener("popstate", router);
 
-document.addEventListener("DOMContentLoaded", (e) => {
+document.addEventListener("DOMContentLoaded", () => {
   document.body.addEventListener("click", (e) => {
-    // console.log(e.target.id, "afafaf");
     if ((e.target as HTMLAnchorElement).matches("[data-link]")) {
       e.preventDefault();
       navigateTo((e.target as HTMLAnchorElement).href);
-      // console.log((e.target as HTMLAnchorElement).href);
+    }
+  });
+
+  document.body.addEventListener("keypress", (e) => {
+    const searchTerm = document.getElementById(
+      "searchInput"
+    ) as HTMLInputElement;
+    if (e.key === "Enter") {
+      if (document.activeElement instanceof HTMLInputElement) {
+        e.preventDefault();
+        navigateTo(`/search/${searchTerm.value}`);
+      }
     }
   });
   router();
-});
-// window.addEventListener("click", (e) => {
-//   // e.preventDefault();
-//   console.log(e.target);
-// });
-
-const input = document.getElementById("search-bar");
-console.log(input.value);
-
-document.addEventListener("keypress", (e) => {
-  // if (e.key === "Enter") {
-  //   e.preventDefault();
-  //   console.log(input.value);
-  // }
-  console.log(input.value);
 });
