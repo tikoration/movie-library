@@ -3,8 +3,6 @@ import DetailsOfMovie from "./views/details.js";
 import HomeContainer from "./views/home.js";
 import Searched from "./views/searchedPage.js";
 
-import Searched from "./views/searchedPage.js";
-
 const navigateTo = (url: string) => {
   history.pushState(null, "", url);
   router();
@@ -16,12 +14,9 @@ const router = async () => {
   const routes = [
     { path: "/", view: HomeContainer },
     { path: "/library", view: DetailsOfMovie },
-    { path: "/search/:key", view: Searched },
     { path: `/movie/:id`, view: DetailsOfMovie },
     { path: "/search/:key", view: Searched },
-    { path: `/movie/:id`, view: DetailsOfMovie },
   ];
-
 
   const match = routes.find((route) => {
     const routePathSegments = route.path
@@ -34,29 +29,22 @@ const router = async () => {
       return false;
     }
 
-
     const match = routePathSegments.every((routeSegment, i) => {
       return (
         routeSegment === urlPathSemgents[i] || routeSegment.startsWith(":")
       );
     });
 
-
     return match;
   });
 
-
   const view = await match.view();
-
 
   const mainPage = document.querySelector("#main-page") as HTMLDivElement;
   mainPage.innerHTML = view;
 };
 
-
 window.addEventListener("popstate", router);
-
-document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   document.body.addEventListener("click", (e) => {

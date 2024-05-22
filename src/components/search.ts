@@ -32,10 +32,10 @@ export const Search = () => {
     results.length > 0
       ? results.forEach((result) => {
           const listItem = document.createElement("a");
-          listItem.classList.add("search-results-item");
-          listItem.href = `/details/${result.id}`;
+          listItem.classList.add("movie-img-cont");
+          listItem.href = `/movie/${result.id}`;
           const movieTitle = document.createElement("h2");
-          movieTitle.classList.add("movie-title");
+          movieTitle.classList.add("movie-imdb-title");
           const movieImg = document.createElement("img");
           movieImg.classList.add("movie-img");
           const altImg = result.poster_path || result.backdrop_path;

@@ -20,10 +20,8 @@ const router = () => __awaiter(void 0, void 0, void 0, function* () {
     const routes = [
         { path: "/", view: HomeContainer },
         { path: "/library", view: DetailsOfMovie },
-        { path: "/search/:key", view: Searched },
         { path: `/movie/:id`, view: DetailsOfMovie },
         { path: "/search/:key", view: Searched },
-        { path: `/movie/:id`, view: DetailsOfMovie },
     ];
     const match = routes.find((route) => {
         const routePathSegments = route.path
@@ -46,22 +44,20 @@ const router = () => __awaiter(void 0, void 0, void 0, function* () {
 });
 window.addEventListener("popstate", router);
 document.addEventListener("DOMContentLoaded", () => {
-    document.addEventListener("DOMContentLoaded", () => {
-        document.body.addEventListener("click", (e) => {
-            if (e.target.matches("[data-link]")) {
-                e.preventDefault();
-                navigateTo(e.target.href);
-            }
-        });
-        document.body.addEventListener("keypress", (e) => {
-            const searchTerm = document.getElementById("searchInput");
-            if (e.key === "Enter") {
-                if (document.activeElement instanceof HTMLInputElement) {
-                    e.preventDefault();
-                    navigateTo(`/search/${searchTerm.value}`);
-                }
-            }
-        });
-        router();
+    document.body.addEventListener("click", (e) => {
+        if (e.target.matches("[data-link]")) {
+            e.preventDefault();
+            navigateTo(e.target.href);
+        }
     });
+    document.body.addEventListener("keypress", (e) => {
+        const searchTerm = document.getElementById("searchInput");
+        if (e.key === "Enter") {
+            if (document.activeElement instanceof HTMLInputElement) {
+                e.preventDefault();
+                navigateTo(`/search/${searchTerm.value}`);
+            }
+        }
+    });
+    router();
 });
