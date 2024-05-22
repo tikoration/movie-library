@@ -1,0 +1,47 @@
+.search-results{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+.search-title{
+    margin-top: 20px;
+}
+
+.search-results-item {
+    width: 170px;
+    height: 230px;
+    text-decoration: none;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    transition: padding 0.2s ease-out;
+    margin-top: 20px;
+}
+
+.search-results-item:hover {
+    padding: 15px;
+}
+
+.search-results-item h2{
+    font-size: 20px;
+    height: 40px;
+    margin-bottom: 4px;
+    word-wrap: break-word;
+}
+
+.movie-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    padding: 2px;
+}
+
+.no-movies {
+    margin-top: 80px;
+    text-align: left;
+}
