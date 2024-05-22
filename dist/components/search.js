@@ -7,7 +7,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { setupInfiniteScroll } from "./infiniteScroll.js";
 const api_key = "88f63d75ae40120899216aa75faa6c13";
+setupInfiniteScroll();
+const page = setupInfiniteScroll();
+console.log(page);
 const searchKey = location.pathname.split("/")[2];
 export const Search = () => {
     function fetchData(searchTerm) {
@@ -33,18 +37,19 @@ export const Search = () => {
         results.length > 0
             ? results.forEach((result) => {
                 const listItem = document.createElement("a");
-                listItem.classList.add("movie-img-cont");
+                listItem.classList.add("movie-img-cont", 'search-results-item');
                 listItem.href = `/movie/${result.id}`;
-                const movieTitle = document.createElement("h2");
+                const movieTitle = document.createElement("div");
                 movieTitle.classList.add("movie-imdb-title");
+                const movieT = document.createElement("p");
+                movieT.innerHTML = result.title;
+                movieTitle.append(movieT);
                 const movieImg = document.createElement("img");
                 movieImg.classList.add("movie-img");
                 const altImg = result.poster_path || result.backdrop_path;
                 movieImg.src = altImg
                     ? `https://image.tmdb.org/t/p/original${result.poster_path || result.backdrop_path}`
                     : "../../assets/imdb-logo.png";
-                console.log(result);
-                movieTitle.innerHTML = result.title;
                 listItem.append(movieTitle, movieImg);
                 searchResultsElement === null || searchResultsElement === void 0 ? void 0 : searchResultsElement.appendChild(listItem);
             })

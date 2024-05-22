@@ -5,56 +5,27 @@
     gap: 25px;
     width: 100%;
     margin-bottom: 100px;
+    margin-top: 40px;
+}
+
+.search-results-item{
+    transition: transform 0.2s ease-out;
+}
+
+.search-results-item:hover{
+    transform: scale(1.05);
 }
 
 .search-title{
     margin-top: 20px;
 }
 
-.search-results-item {
-    width: 170px;
-    height: 230px;
-    text-decoration: none;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    transition: padding 0.2s ease-out;
-    margin-top: 20px;
-}
-
-.search-results-item:hover {
-    padding: 15px;
-}
-
-.search-results-item h2{
-    font-size: 20px;
-    height: 40px;
-    margin-bottom: 4px;
-    word-wrap: break-word;
-}
-
-/* .movie-img {
+.movie-search-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 12px;
     padding: 2px;
-    position: relative;
-} */
-
-.movie-img::after{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(
-        180deg,
-        rgba(29, 29, 29, 0.01) 0%,
-        rgba(15, 30, 41, 0.8) 100%
-      );
-      z-index: 9;
 }
 
 .no-movies {

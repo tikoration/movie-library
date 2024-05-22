@@ -1,3 +1,5 @@
+import { setupInfiniteScroll } from "./infiniteScroll.js";
+
 interface SearchData {
   id: number;
   title: string;
@@ -5,7 +7,10 @@ interface SearchData {
   backdrop_path: string;
 }
 const api_key = "88f63d75ae40120899216aa75faa6c13";
+setupInfiniteScroll()
+const page = setupInfiniteScroll();
 
+console.log(page)
 const searchKey = location.pathname.split("/")[2];
 export const Search = () => {
   async function fetchData(searchTerm: string) {
@@ -32,10 +37,13 @@ export const Search = () => {
     results.length > 0
       ? results.forEach((result) => {
           const listItem = document.createElement("a");
-          listItem.classList.add("movie-img-cont");
+          listItem.classList.add("movie-img-cont", 'search-results-item');
           listItem.href = `/movie/${result.id}`;
-          const movieTitle = document.createElement("h2");
+          const movieTitle = document.createElement("div");
           movieTitle.classList.add("movie-imdb-title");
+          const movieT = document.createElement("p");
+          movieT.innerHTML = result.title;
+          movieTitle.append(movieT);
           const movieImg = document.createElement("img");
           movieImg.classList.add("movie-img");
           const altImg = result.poster_path || result.backdrop_path;
@@ -45,9 +53,6 @@ export const Search = () => {
               }`
             : "../../assets/imdb-logo.png";
 
-          console.log(result);
-
-          movieTitle.innerHTML = result.title;
           listItem.append(movieTitle, movieImg);
           searchResultsElement?.appendChild(listItem);
         })
@@ -95,3 +100,4 @@ export const Search = () => {
     }
   });
 };
+
