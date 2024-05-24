@@ -1,4 +1,4 @@
-import { setupInfiniteScroll } from "./infiniteScroll.js";
+import { setupInfiniteScroll } from "../services/infiniteScroll.js";
 
 interface SearchData {
   id: number;
@@ -7,14 +7,9 @@ interface SearchData {
   backdrop_path: string;
 }
 const api_key = "88f63d75ae40120899216aa75faa6c13";
-setupInfiniteScroll()
-const page = setupInfiniteScroll();
 
-console.log(page)
-const searchKey = location.pathname.split("/")[2];
 export const Search = () => {
-  async function fetchData(searchTerm: string) {
-    const page = 1;
+  async function fetchData(searchTerm: string, page: number) {
     try {
       const response = await fetch(
         `https://api.themoviedb.org/3/search/movie?query=${searchTerm}&page=${page}&api_key=${api_key}`
@@ -32,12 +27,20 @@ export const Search = () => {
 
   function renderResults(results: SearchData[]): void {
     const searchResultsElement = document.getElementById("searchResults");
-    const noMovies = document.getElementById("no-movies") as HTMLHeadingElement;
+    const noMovies = document.createElement("h1") as HTMLHeadingElement;
+    noMovies.classList.add("no-movies");
+    noMovies.innerHTML = "Could not find any movies";
 
     results.length > 0
       ? results.forEach((result) => {
+          const loaderDiv = document.createElement("div");
+          loaderDiv.classList.add("animated-background");
           const listItem = document.createElement("a");
-          listItem.classList.add("movie-img-cont", 'search-results-item');
+          setTimeout(() => {
+            loaderDiv.appendChild(listItem);
+            loaderDiv.classList.remove("animated-background");
+          }, 1000);
+          listItem.classList.add("movie-img-cont", "search-results-item");
           listItem.href = `/movie/${result.id}`;
           const movieTitle = document.createElement("div");
           movieTitle.classList.add("movie-imdb-title");
@@ -54,9 +57,9 @@ export const Search = () => {
             : "../../assets/imdb-logo.png";
 
           listItem.append(movieTitle, movieImg);
-          searchResultsElement?.appendChild(listItem);
+          searchResultsElement?.appendChild(loaderDiv);
         })
-      : (noMovies.innerHTML = "Could not find any movies");
+      : searchResultsElement?.append(noMovies);
   }
 
   (document.getElementById("searchInput") as HTMLInputElement).addEventListener(
@@ -73,8 +76,18 @@ export const Search = () => {
           ).innerHTML = "";
           return;
         }
-        const { results } = await fetchData(searchTerm);
+
+        localStorage.setItem("searchTerm", searchTerm);
+
+        const { results } = await fetchData(searchTerm, 1);
         renderResults(results);
+
+        setupInfiniteScroll(async (page: number) => {
+          const searchInp = localStorage.getItem("searchTerm") || "";
+          const { results } = await fetchData(searchInp, page);
+          renderResults(results);
+        });
+
         const location = "/" + window.location.pathname.split("/")[1];
         if (location !== `/search`) {
           window.location.href = `/search/:${searchTerm}`;
@@ -84,20 +97,23 @@ export const Search = () => {
       }
     }
   );
+
   document.addEventListener("DOMContentLoaded", async () => {
-    if (!searchKey.trim()) {
+    const searchInp = localStorage.getItem("searchTerm") || "";
+
+    if (!searchInp.trim()) {
       (document.getElementById("searchInput") as HTMLInputElement).innerHTML =
         "";
       return;
     }
 
-    const { results } = await fetchData(searchKey);
-    renderResults(results);
+    setupInfiniteScroll(async (page: number) => {
+      const searchInp = localStorage.getItem("searchTerm") || "";
+      const { results } = await fetchData(searchInp, page);
+      renderResults(results);
+    });
 
-    const location = "/" + window.location.pathname.split("/")[1];
-    if (location !== `/search`) {
-      window.location.href = `/search/:${searchKey}`;
-    }
+    const { results } = await fetchData(searchInp, 1);
+    renderResults(results);
   });
 };
-
