@@ -1,3 +1,5 @@
+import { navigateTo } from "../main.js";
+
 interface Movie {
   id: number;
   title: string;
@@ -12,7 +14,6 @@ const Explore = () => {
   fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${api_key}`)
     .then((res) => res.json())
     .then((data: { results: Movie[] }) => {
-      console.log(data);
       const movies = data.results.map((movie) => ({
         id: movie.id,
         title: movie.title,
@@ -28,9 +29,15 @@ const Explore = () => {
         autoplay: {
           delay: 7000,
         },
-        slidesPerView: 1,
-        centeredSlides: true,
-        spaceBetween: 30,
+        // slidesPerView: 1,
+        // spaceBetween: 30,
+      });
+
+      swiperContainer.on("click", (_: any, event: any) => {
+        const id = event.target
+          .closest("[data-slide-id]")
+          .getAttribute("data-slide-id");
+        navigateTo(`movie/${id}`);
       });
 
       movies &&
@@ -38,9 +45,7 @@ const Explore = () => {
           const slide = document.createElement("div");
           slide.classList.add("swiper-slide");
           slide.innerHTML = `
-                  <a href="/details/${
-                    movie.id
-                  }" data-link class="explore-container" id="${movie.id}">
+                  <div data-slide-id="${movie.id}">
                           <div class="movie-t-d">
                               <h1 class="movie-title">${movie.title}</h1>
                               <h4>${movie.description}</h4>
@@ -48,7 +53,7 @@ const Explore = () => {
                           <img class="movie-image" src="${
                             movie.img || movie.poster_img
                           }" alt="${movie.title}" />
-                  </a>
+                  </div>
               `;
           swiperContainer.appendSlide(slide);
         });
@@ -60,6 +65,7 @@ const Explore = () => {
       }
       if (loader) {
         loader.style.width = "100%";
+        loader.style.height = "400px";
       }
 
       setTimeout(() => {
