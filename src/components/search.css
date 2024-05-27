@@ -1,73 +1,103 @@
-.search-results{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    width: 100%;
-    margin-bottom: 100px;
-}
-
-.search-title{
-    margin-top: 20px;
+.search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  width: 100%;
+  margin-bottom: 100px;
+  margin-top: 40px;
 }
 
 .search-results-item {
-    width: 170px;
-    height: 230px;
-    text-decoration: none;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    transition: padding 0.2s ease-out;
-    margin-top: 20px;
+  transition: transform 0.2s ease-out;
 }
 
 .search-results-item:hover {
-    padding: 15px;
+  transform: scale(1.05);
 }
 
-.search-results-item h2{
-    font-size: 20px;
-    height: 40px;
-    margin-bottom: 4px;
-    word-wrap: break-word;
+.search-title {
+  margin-top: 20px;
 }
 
-/* .movie-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 12px;
-    padding: 2px;
-    position: relative;
-} */
-
-.movie-img::after{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(
-        180deg,
-        rgba(29, 29, 29, 0.01) 0%,
-        rgba(15, 30, 41, 0.8) 100%
-      );
-      z-index: 9;
+.movie-search-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  padding: 2px;
 }
 
 .no-movies {
-    margin-top: 80px;
-    text-align: left;
+  margin-top: 80px;
+  text-align: left;
 }
 
 .movie-imdb {
-    position: absolute;
-    bottom: 18px;
-    z-index: 99;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2rem;
+  position: absolute;
+  bottom: 18px;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
+@-webkit-keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
   }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.animated-background {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-name: placeHolderShimmer;
+  animation-name: placeHolderShimmer;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  background: #747373;
+  background: rgba(57, 74, 89, 0.8);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(8%, rgba(57, 74, 89, 0.8)),
+    color-stop(18%, #747373),
+    color-stop(33%, rgba(57, 74, 89, 0.8))
+  );
+  background: -webkit-linear-gradient(
+    left,
+    rgba(57, 74, 89, 0.8) 8%,
+    #747373 18%,
+    rgba(57, 74, 89, 0.8) 33%
+  );
+  background: linear-gradient(
+    to right,
+    rgba(57, 74, 89, 0.8) 8%,
+    #747373 18%,
+    rgba(57, 74, 89, 0.8) 33%
+  );
+  -webkit-background-size: 800px 104px;
+  background-size: 800px 104px;
+  width: 200px;
+  height: 300px;
+  position: relative;
+  border-radius: 10px;
+}
