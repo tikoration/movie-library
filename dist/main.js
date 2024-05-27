@@ -9,9 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { Search } from "./components/search.js";
 import DetailsOfMovie from "./views/details.js";
+import { ErrorPage } from "./views/errorPage.js";
 import HomeContainer from "./views/home.js";
+import { Lists } from "./views/lists.js";
 import Searched from "./views/searchedPage.js";
-const navigateTo = (url) => {
+export const navigateTo = (url) => {
     history.pushState(null, "", url);
     router();
 };
@@ -19,7 +21,7 @@ Search();
 const router = () => __awaiter(void 0, void 0, void 0, function* () {
     const routes = [
         { path: "/", view: HomeContainer },
-        { path: "/library", view: DetailsOfMovie },
+        { path: "/library", view: Lists },
         { path: `/movie/:id`, view: DetailsOfMovie },
         { path: "/search/:key", view: Searched },
     ];
@@ -38,9 +40,10 @@ const router = () => __awaiter(void 0, void 0, void 0, function* () {
         });
         return match;
     });
-    const view = yield match.view();
+    const view = (yield (match === null || match === void 0 ? void 0 : match.view())) || ErrorPage();
     const mainPage = document.querySelector("#main-page");
     mainPage.innerHTML = view;
+    Lists();
 });
 window.addEventListener("popstate", router);
 document.addEventListener("DOMContentLoaded", () => {

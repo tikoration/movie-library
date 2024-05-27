@@ -26,7 +26,6 @@ export async function getMovieById(id: string) {
     return data;
   } catch (err) {
     console.error(err);
-    console.error(err);
   }
 }
 
@@ -46,19 +45,30 @@ export async function getMovieTrailer(id: string) {
   }
 }
 
-/////////
-
-//api.themoviedb.org/3/search/movie?query=${key}&page=${page}&api_key=${api_key}
-export async function getMovieByKey(key: string) {
+export async function getGenres() {
   try {
     const searched = await fetch(
-      `//api.themoviedb.org/3/search/movie?query=${key}&page=1&api_key=${API_KEY}
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}
       `
     );
-    if (!searched.ok) throw new Error("problem with accessing movie trailer");
+    if (!searched.ok) throw new Error("problem with accessing genres list");
 
     const data = await searched.json();
-    console.log(data);
+    // console.log(data);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function getMovieWithGenre(id: string, page = 1) {
+  try {
+    const fetched = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${id}&page=${page}`
+    );
+    if (!fetched.ok) throw new Error("no movies were found");
+    const data = await fetched.json();
+
     return data;
   } catch (err) {
     console.error(err);

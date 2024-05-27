@@ -18,6 +18,7 @@ body {
 #main-page {
   width: 100%;
   padding: 10px 100px;
+  padding-bottom: 4rem;
 }
 /* NAVIGATION */
 .nav {
@@ -63,7 +64,7 @@ body {
 
 .search-bar {
   width: 50%;
-  height: 2.5rem;
+  height: 3.5rem;
   border: none;
   border-radius: 20px;
   background: none;
@@ -232,4 +233,119 @@ iframe {
 
 .details-movie-img {
   border-radius: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* .gg {
+  font-size: 2rem;
+} */
+
+.list-cont {
+  /* padding-top: 4rem; */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* gap: 1rem; */
+  /* font-size: 1.5rem; */
+  transition: transform 0.5s linear;
+  /* padding-left: 2rem; */
+  transition-timing-function: linear;
+}
+.swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
+.lists-swiper-container {
+  overflow: hidden;
+  /* display: flex; */
+  width: 100%;
+}
+
+.swiper-slide-list {
+  text-align: center;
+  margin: 2rem;
+  font-size: 2rem;
+  cursor: pointer;
+
+  /* justify-self: flex-start; */
+}
+.swiper-slide-list a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.genre-movie-container {
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.genre-movie-container h1 {
+  font-size: 2rem;
+}
+
+.genre-movie-container h1 > span {
+  color: #868686;
+  padding-left: 1rem;
+  font-size: 1.8rem;
+}
+
+.genre-movies {
+  flex-wrap: wrap;
+  display: flex;
+  gap: 2rem;
+  row-gap: 3rem;
+  justify-content: center;
+  padding-bottom: 2rem;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  font-size: 2rem;
+  align-items: center;
+  padding-bottom: 2rem;
+}
+
+.buttons-container div {
+  display: flex;
+  gap: 1rem;
+}
+
+.buttons-container button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+  padding: 2rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons-container button:hover {
+  background-color: rgba(57, 74, 89, 0.8);
+}
+
+.active-number {
+  background-color: rgba(57, 74, 89, 0.8);
+}
+
+#pagination-numbers span {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  cursor: pointer;
 }

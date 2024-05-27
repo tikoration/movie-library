@@ -1,9 +1,11 @@
 import { Search } from "./components/search.js";
 import DetailsOfMovie from "./views/details.js";
+import { ErrorPage } from "./views/errorPage.js";
 import HomeContainer from "./views/home.js";
+import { Lists } from "./views/lists.js";
 import Searched from "./views/searchedPage.js";
 
-const navigateTo = (url: string) => {
+export const navigateTo = (url: string) => {
   history.pushState(null, "", url);
   router();
 };
@@ -13,7 +15,7 @@ Search();
 const router = async () => {
   const routes = [
     { path: "/", view: HomeContainer },
-    { path: "/library", view: DetailsOfMovie },
+    { path: "/library", view: Lists },
     { path: `/movie/:id`, view: DetailsOfMovie },
     { path: "/search/:key", view: Searched },
   ];
@@ -38,10 +40,11 @@ const router = async () => {
     return match;
   });
 
-  const view = await match.view();
+  const view = (await match?.view()) || ErrorPage();
 
   const mainPage = document.querySelector("#main-page") as HTMLDivElement;
   mainPage.innerHTML = view;
+  Lists();
 };
 
 window.addEventListener("popstate", router);
