@@ -1,5 +1,6 @@
+import { listsOnRender } from "../components/listsOnRender.js";
 import { getGenres, getMovieWithGenre } from "../services/apiMovies.js";
-
+let functionHasBeenCalled = false;
 declare const Swiper: any;
 
 type Genre = {
@@ -107,15 +108,25 @@ function GENRErator(e: string, data: data, currentPage: number, id: string) {
 export async function Lists() {
   const data = await getGenres();
   // console.log(data);
-  const container = document.querySelector(".lists-swiper-container");
 
+  // async  function  B() {
+  //   if (!functionHasBeenCalled) {
+  //     functionHasBeenCalled = true;
+  //     return await listsOnRender();
+  //   } else {
+  //     return ' '
+  //   }
+  // }
+
+  console.log("calling");
+  const container = document.querySelector(".lists-swiper-container");
   if (container) {
     const swiperContainer = new Swiper(".lists-swiper-container", {
       // Use the unique class name here
       effect: "slide",
       loop: true,
       freeMode: true,
-      speed: 2000,
+      speed: 3000,
       autoplay: {
         delay: 0.1,
         pauseOnMouseEnter: true,
@@ -124,7 +135,7 @@ export async function Lists() {
         stopOnLastSlide: false,
       },
 
-      slidesPerView: 6,
+      slidesPerView: 8,
       centeredSlides: true,
     });
     data["genres"].map((e: Genre) => {
@@ -141,8 +152,8 @@ export async function Lists() {
   return `<div class='lists-swiper-container'>
   <div class="swiper-wrapper list-cont"></div>
   <div>
-  <div class='genre-movie-container'></div>
- 
+  <div class='genre-movie-container' >
+${await listsOnRender()}
   </div>
   </div>`;
 }
