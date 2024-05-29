@@ -12,21 +12,8 @@ const Explore = () => {
             poster_img: `https://image.tmdb.org/t/p/original${movie.poster_path}`,
             description: movie.overview,
         }));
-        const swiperContainer = new Swiper(".swiper-container", {
-            loop: true,
-            autoplay: {
-                delay: 7000,
-            },
-            // slidesPerView: 1,
-            // spaceBetween: 30,
-        });
-        swiperContainer.on("click", (_, event) => {
-            const id = event.target
-                .closest("[data-slide-id]")
-                .getAttribute("data-slide-id");
-            navigateTo(`movie/${id}`);
-        });
-        movies &&
+        const swiperWrapper = document.querySelector(".swiper-wrapper");
+        if (swiperWrapper) {
             movies.forEach((movie) => {
                 const slide = document.createElement("div");
                 slide.classList.add("swiper-slide");
@@ -39,25 +26,44 @@ const Explore = () => {
                           <img class="movie-image" src="${movie.img || movie.poster_img}" alt="${movie.title}" />
                   </div>
               `;
-                swiperContainer.appendSlide(slide);
+                swiperWrapper.appendChild(slide);
             });
-        const loader = document.getElementById("loader");
-        const exploreCont = document.getElementById("explore-cont");
-        if (exploreCont) {
-            exploreCont.style.display = "none";
-        }
-        if (loader) {
-            loader.style.width = "100%";
-            loader.style.height = "400px";
-        }
-        setTimeout(() => {
-            if (loader) {
-                loader.classList.remove("animated-background");
-            }
+            const swiperContainer = new Swiper(".swiper-container", {
+                loop: true,
+                autoplay: {
+                    delay: 7000,
+                },
+                slidesPerView: 1,
+                // spaceBetween: 30,
+            });
+            swiperContainer.on("click", (_, event) => {
+                const id = event.target
+                    .closest("[data-slide-id]")
+                    .getAttribute("data-slide-id");
+                navigateTo(`movie/${id}`);
+            });
+            const loader = document.getElementById("loader");
+            const exploreCont = document.getElementById("explore-cont");
             if (exploreCont) {
-                exploreCont.style.display = "block";
+                exploreCont.style.display = "none";
             }
-        }, 700);
+            if (loader) {
+                loader.style.width = "100%";
+                loader.style.height = "400px";
+            }
+            setTimeout(() => {
+                if (loader) {
+                    loader.classList.remove("animated-background");
+                }
+                if (exploreCont) {
+                    exploreCont.style.display = "block";
+                }
+            }, 700);
+            const swiperContainerElement = document.querySelector(".swiper-container");
+            if (swiperContainerElement) {
+                swiperContainerElement.style.display = "block";
+            }
+        }
     });
     return `
   <div class="explore-t-q">
@@ -66,7 +72,7 @@ const Explore = () => {
   </div>
   <div id='loader' class="animated-background">
     <div id="explore-cont">
-      <div class="swiper-container" id="help">
+      <div class="swiper-container hidden" id="help">
           <div class="swiper-wrapper"></div>
       </div>
       </div>

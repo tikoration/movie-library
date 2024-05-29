@@ -8,6 +8,7 @@
   width: 100%;
   overflow: hidden;
   border-radius: 12px;
+  cursor: pointer;
 }
 .explore-t-q {
   margin-bottom: 24px;
@@ -67,4 +68,8 @@
 .movie-title {
   font-size: 36px;
   font-weight: 600;
+}
+
+.hidden {
+  display: none;
 }
