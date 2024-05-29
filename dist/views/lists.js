@@ -7,7 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { listsOnRender } from "../components/listsOnRender.js";
 import { getGenres, getMovieWithGenre } from "../services/apiMovies.js";
+let functionHasBeenCalled = false;
 function activateNumber(c, currentPage) {
     if (c) {
         const children = Array.from(c.children);
@@ -84,6 +86,15 @@ export function Lists() {
     return __awaiter(this, void 0, void 0, function* () {
         const data = yield getGenres();
         // console.log(data);
+        // async  function  B() {
+        //   if (!functionHasBeenCalled) {
+        //     functionHasBeenCalled = true;
+        //     return await listsOnRender();
+        //   } else {
+        //     return ' '
+        //   }
+        // }
+        console.log("calling");
         const container = document.querySelector(".lists-swiper-container");
         if (container) {
             const swiperContainer = new Swiper(".lists-swiper-container", {
@@ -91,7 +102,7 @@ export function Lists() {
                 effect: "slide",
                 loop: true,
                 freeMode: true,
-                speed: 2000,
+                speed: 3000,
                 autoplay: {
                     delay: 0.1,
                     pauseOnMouseEnter: true,
@@ -99,7 +110,7 @@ export function Lists() {
                     waitForTransition: true,
                     stopOnLastSlide: false,
                 },
-                slidesPerView: 6,
+                slidesPerView: 8,
                 centeredSlides: true,
             });
             data["genres"].map((e) => {
@@ -114,8 +125,8 @@ export function Lists() {
         return `<div class='lists-swiper-container'>
   <div class="swiper-wrapper list-cont"></div>
   <div>
-  <div class='genre-movie-container'></div>
- 
+  <div class='genre-movie-container' >
+${yield listsOnRender()}
   </div>
   </div>`;
     });
